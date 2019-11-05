@@ -26,5 +26,6 @@ Simple project for ogl learning
   <li> <kbd> E </kbd> - automove to upper left corner of the map (if it's impossible to move there, finds the nearest cell and moves to it)
 </ul>
 
+<h2> PathFinder example </h2>
 <img src="https://psv4.userapi.com/c848428/u161240850/docs/d4/9b1b3bcd8492/1111111111_1.gif?extra=R9NNCFqM45Sx112juKQvrgRhgAnnHooXFE8KNMw1Ujrp-zraSZ_52LpfOShMqqWTCRdHr1o7BS1H0V1j6sIBaNMmO3RQ85s1r73LERHNpkz8kJPXdmvdP0-VF3xKTi7brPlckugnUXnRaXZsOs04ht1F"> </img>
 
