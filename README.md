@@ -10,7 +10,7 @@ Simple project for ogl learning
   <li> OGL 1.1 lighting system </li>
   <li> Mesh loader (wavefront obj) </li>
   <li> Camera transformations (Own camera class was implemented) </li>
-  <li> Material loader (using JSON) </li>
+  <li> Material loader (using rapidJSON) </li>
   <li> Main program was separated into 3 modules (Display, simulation, data) </li>
   <li> Moving depending on camera orientation </li>
   <li> Passability map </li>
