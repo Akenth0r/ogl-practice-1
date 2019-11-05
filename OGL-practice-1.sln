@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OGL-practice-1", "OGL-practice-1\OGL-practice-1.vcxproj", "{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Debug|x64.ActiveCfg = Debug|x64
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Debug|x64.Build.0 = Debug|x64
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Debug|x86.ActiveCfg = Debug|Win32
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Debug|x86.Build.0 = Debug|Win32
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Release|x64.ActiveCfg = Release|x64
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Release|x64.Build.0 = Release|x64
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Release|x86.ActiveCfg = Release|Win32
+		{CCD1D0AE-FA7D-4DAF-B860-E7B776A4E12C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6582567D-3E63-4B93-ABE0-9926E8F7E3A4}
+	EndGlobalSection
+EndGlobal
