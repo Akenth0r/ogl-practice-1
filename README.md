@@ -23,7 +23,7 @@ Simple project for ogl learning
   <li> <kbd>LMB + drag</kbd> - camera rotation </li>
   <li> <kbd> Mouse Scroll </kbd> - zoom in\out </li>
   <li> <kbd> WASD </kbd> - player moving </li>
-  <li> <kbd> E </kbd> - automove to upper left corner of the map (if it's impossible to move there, finds the nearest cell and moves to it)
+  <li> <kbd> E </kbd> - automove to upper right corner of the map (if it's impossible to move there, finds the nearest cell and moves to it)
 </ul>
 
 <h2> PathFinder example </h2>
