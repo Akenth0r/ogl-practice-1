@@ -101,13 +101,14 @@ void Mesh::load(const char* filename)
 
 	// Load it to buffers
 	if (!(buffers[0] && buffers[1]))
-		glCreateBuffers(2, buffers);
-	// Invalidate our buffers
-	glInvalidateBufferData(buffers[0]);
-	glInvalidateBufferData(buffers[1]);
-	// Load data without binding
-	glNamedBufferStorage(buffers[0], vertices.size()*sizeof(Vertex), vertices.data(), 0); // set VBO
-	glNamedBufferStorage(buffers[1], indices.size()*sizeof(GLuint), indices.data(), 0);	  // set EBO
+		glGenBuffers(2, buffers);
+	// Load data 
+	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size()*sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);    // set VBO
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()*sizeof(GLuint), indices.data(), GL_STATIC_DRAW);	  // set EBO
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 
