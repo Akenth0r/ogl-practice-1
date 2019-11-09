@@ -27,4 +27,4 @@ Simple project for ogl learning
 </ul>
 
 <h2> PathFinder example </h2>
-![](master/pathfinder.gif)
+![](https://github.com/Akenth0r/ogl-practice-1/blob/master/pathfinder.gif)
