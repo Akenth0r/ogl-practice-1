@@ -2,6 +2,9 @@
 #include <memory>
 #include "Data.h"
 #include "GameObject.h"
+#include "rapidjson/rapidjson.h"
+#include <string>
+#include <map>
 enum GameObjectType
 {
 	LIGHT_OBJECT,
@@ -10,6 +13,8 @@ enum GameObjectType
 	MAIN_HERO_OBJECT,
 	MONSTER_OBJECT,
 	PLANE_OBJECT,
+	PORTAL1_OBJECT,
+	PORTAL2_OBJECT,
 	MAX_OBJECT_COUNT,
 	EMPTY_OBJECT
 };
@@ -18,9 +23,10 @@ enum GameObjectType
 class GameObjectFactory
 {
 public:
-	GameObjectFactory()=default;
+	GameObjectFactory();
 	// Initialization (meshes, materials et cetera)
-	void init();
+	//void init();
+	void init(const char* filenameJSON);
 	// Create new object
 	shared_ptr<GameObject> create(GameObjectType type, int x, int y);
 	~GameObjectFactory()=default;
@@ -28,4 +34,7 @@ public:
 private:
 	Mesh	 meshes[MAX_OBJECT_COUNT];
 	Material materials[MAX_OBJECT_COUNT];
+	rapidjson::Document docJSON;
+	map<string, GameObjectType> gObjType;
+	void initObject(GameObjectType type, rapidjson::Value::ConstMemberIterator obj);
 };

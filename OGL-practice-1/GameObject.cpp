@@ -107,6 +107,10 @@ void GameObject::stop()
 	progress = 0;
 }
 
+bool GameObject::isTransparent()
+{
+	return graphicObject.isTransparent();
+}
 
 void GameObject::simulate(float sec)
 {

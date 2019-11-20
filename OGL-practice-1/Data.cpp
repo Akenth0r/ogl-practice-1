@@ -11,6 +11,11 @@ Camera camera;
 shared_ptr<GameObject>  gameObjects[21][21];
 shared_ptr<GameObject>  player;
 shared_ptr<GameObject> plane;
+//shared_ptr<GameObject> portal1_entries[4];
+//shared_ptr<GameObject> portal2_entries[2];
+Portal portals[2];
+vector<ivec2> p1_entries,
+			  p2_entries;
 
 bool eIsPressed = false;
 
@@ -28,32 +33,33 @@ int FPScount;
 // Passability map
 int passabilityMap[21][21] = {
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-3,4,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,
+3,4,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,5,3,
 3,0,2,1,2,0,2,0,2,2,2,1,2,0,2,0,2,0,2,2,3,
-3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,3,
+3,0,2,0,2,0,0,0,2,0,2,0,0,0,2,5,1,0,0,0,3,
 3,0,1,0,2,2,1,2,2,0,2,0,2,2,2,1,2,0,2,0,3,
 3,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,2,0,3,
 3,0,2,2,1,1,2,0,2,0,2,2,2,2,2,0,2,2,2,0,3,
 3,0,2,0,0,0,2,0,2,0,0,0,0,0,2,0,0,0,0,0,3,
 3,0,2,0,2,2,2,0,2,0,2,2,1,2,2,2,1,2,2,0,3,
-3,0,0,0,2,0,0,0,2,0,2,0,0,0,0,0,0,0,1,0,3,
+3,0,0,0,2,0,0,0,2,0,2,0,0,0,0,0,0,6,1,0,3,
 3,2,2,2,2,0,2,2,2,0,2,0,2,2,2,2,2,2,2,0,3,
 3,0,0,0,2,0,0,0,1,0,2,0,0,0,2,0,0,0,0,0,3,
 3,0,2,0,2,2,2,0,2,1,2,0,2,2,2,0,2,2,2,2,3,
 3,0,2,0,0,0,2,0,0,0,2,0,0,0,2,0,2,0,0,0,3,
 3,2,2,2,2,0,2,2,2,0,2,2,2,0,1,0,2,2,2,0,3,
-3,0,0,0,0,0,2,0,2,0,0,0,2,0,1,0,0,0,2,0,3,
+3,0,0,0,0,0,2,0,2,0,0,6,2,0,1,0,0,0,2,0,3,
 3,0,2,0,2,1,2,0,2,0,2,2,2,0,2,2,2,0,2,0,3,
-3,0,1,0,1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,3,
+3,0,1,5,1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,3,
 3,0,2,1,2,0,2,2,2,2,2,0,2,0,2,0,2,2,2,2,3,
-3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,3,
+3,0,0,0,0,0,0,0,0,0,0,0,2,0,2,0,0,0,0,5,3,
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 };
+
 
 void initData()
 {
 	static GameObjectFactory GOFactory;
-	GOFactory.init();
+	GOFactory.init(".\\scene.json");
 	// Initialize camera
 	camera.setPosition(vec3(1.0, 10.0, 5.0));
 
@@ -75,12 +81,26 @@ void initData()
 			case GREY_BOX: gameObjects[i][j] = GOFactory.create(HEAVY_OBJECT, j, i); break;
 			case DARK_BOX: gameObjects[i][j] = GOFactory.create(BORDER_OBJECT, j, i); break;
 			case PLAYER: gameObjects[i][j] = GOFactory.create(EMPTY_OBJECT, j, i); break;
+			case PORTAL1: 
+				gameObjects[i][j] = GOFactory.create(PORTAL1_OBJECT, j, i);
+				p1_entries.push_back(ivec2(j, i));
+				break;
+			case PORTAL2:
+				gameObjects[i][j] = GOFactory.create(PORTAL2_OBJECT, j, i);
+				p2_entries.push_back(ivec2(j, i));
+				break;
 			default: break;
 			}
 		}
+
+
+	// Initialize portals
+	portals[0] = Portal(p1_entries);
+	portals[1] = Portal(p2_entries);
 
 	// Enter in the main loop
 	QueryPerformanceCounter(&newSimTick);
 	QueryPerformanceFrequency(&frequency);
 	newSimTick = newDrawTick;
+
 }

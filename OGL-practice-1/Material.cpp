@@ -114,3 +114,7 @@ void Material::apply()
 	glMaterialfv(GL_FRONT, GL_SHININESS, &shininess);
 }
 
+bool Material::isTransparent()
+{
+	return diffuse.w < 1.0;
+}

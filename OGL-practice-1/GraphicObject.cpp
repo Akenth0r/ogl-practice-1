@@ -37,6 +37,12 @@ void GraphicObject::setMaterial(Material* material)
 	this->material = material;
 }
 
+bool GraphicObject::isTransparent()
+{
+	if (material)
+		return material->isTransparent();
+	return false;
+}
 
 void GraphicObject::draw()
 {
@@ -46,7 +52,6 @@ void GraphicObject::draw()
 	glMultMatrixf(value_ptr(model));
 	if (mesh)
 		mesh->draw();
-	//glutSolidTeapot(1.);
 	glPopMatrix();
 }
 

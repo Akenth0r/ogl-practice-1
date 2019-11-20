@@ -148,6 +148,9 @@ void gameObjSimulation(float deltaTime)
 		passabilityMap[pOldPos.y][pOldPos.x] = EMPTY;
 		passabilityMap[pNewPos.y][pNewPos.x] = PLAYER;
 	}
+	// TODO: ADD PORTALS
+	portals[0].simulate();
+	portals[1].simulate();
 	// move player
 	player->simulate(deltaTime);
 

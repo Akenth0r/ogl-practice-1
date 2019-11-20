@@ -8,21 +8,68 @@ void display()
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
+	glEnable(GL_MULTISAMPLE);
 
 	camera.apply();
 	lights[0].apply();
-	plane->draw();
-	player->draw();
 
-	for (int i = 0; i < 21; i++)
-		for (int j = 0; j < 21; j++)
-		{
-				gameObjects[i][j]->draw();
-		}
+	drawOpaque();
+
+	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 1);
+	drawTransparent();
+	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
+
 	glutSwapBuffers();
 
 }
 
+void drawOpaque()
+{
+	for (int i = 0; i < 21; i++)
+		for (int j = 0; j < 21; j++)
+			if (!gameObjects[i][j]->isTransparent())
+				gameObjects[i][j]->draw();
+	if (!plane->isTransparent())
+		plane->draw();
+	if (!player->isTransparent())
+		player->draw();
+}
+
+void drawTransparent()
+{
+	glDepthMask(false);
+	glEnable(GL_CULL_FACE);
+	
+	// Front face
+	glCullFace(GL_FRONT);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	for (int i = 0; i < 21; i++)
+		for (int j = 0; j < 21; j++)
+			if (gameObjects[i][j]->isTransparent())
+				gameObjects[i][j]->draw();
+	if (plane->isTransparent())
+		plane->draw();
+	if (player->isTransparent())
+		player->draw();
+	//  Back face
+	glCullFace(GL_BACK);
+	for (int i = 0; i < 21; i++)
+		for (int j = 0; j < 21; j++)
+			if (gameObjects[i][j]->isTransparent())
+				gameObjects[i][j]->draw();
+	if (plane->isTransparent())
+		plane->draw();
+	if (player->isTransparent())
+		player->draw();
+
+	glCullFace(GL_FRONT);
+	glDepthMask(true);
+	glDisable(GL_BLEND);
+	glDisable(GL_CULL_FACE);
+
+
+}
 
 void outFPS()
 {

@@ -28,6 +28,9 @@ public:
 	// Set object mesh
 	void setMesh(Mesh* mesh);
 
+	// Check if graphic object is transparent
+	bool isTransparent();
+
 	// Draw object on the screen
 	void draw();
 

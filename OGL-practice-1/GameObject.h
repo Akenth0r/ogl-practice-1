@@ -52,6 +52,9 @@ public:
 	// simulation func
 	void simulate(float sec);
 
+	// Check if game object is transparent
+	bool isTransparent();
+
 	// Draw game object
 	void draw();
 

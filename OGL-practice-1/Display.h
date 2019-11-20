@@ -3,3 +3,5 @@
 void reshape(int w, int h);
 void outFPS();
 void display();
+void drawOpaque();
+void drawTransparent();

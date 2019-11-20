@@ -34,6 +34,9 @@ public:
 	// Set all parameters
 	void apply();
 
+	// Check if material is transparent
+	bool isTransparent();
+
 	~Material()=default;
 
 private:
