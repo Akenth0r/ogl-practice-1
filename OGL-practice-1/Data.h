@@ -30,7 +30,9 @@ extern const int MeshCount;
 extern const int p1_entries_count;
 extern const int p2_entries_count;
 
-extern bool eIsPressed;
+extern bool eIsPressed, 
+			oneIsPressed,
+			multisample_mode;
 
 // Variables
 extern Light lights[1];

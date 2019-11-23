@@ -8,7 +8,7 @@ void display()
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
-	glEnable(GL_MULTISAMPLE);
+	//glEnable(GL_MULTISAMPLE);
 
 	camera.apply();
 	lights[0].apply();
@@ -21,6 +21,8 @@ void display()
 
 	glutSwapBuffers();
 
+	string title = string(sFPS) + string(" || Antialiasing: ") + (multisample_mode?string(" on"):string(" off"));
+	glutSetWindowTitle(title.c_str());
 }
 
 void drawOpaque()
@@ -79,7 +81,7 @@ void outFPS()
 	if (delta >= 0.5)
 	{
 		sprintf_s(sFPS, "FPS: %d", (int)(FPScount / delta));
-		glutSetWindowTitle(sFPS);
+		//glutSetWindowTitle(sFPS);
 		oldDrawTick = newDrawTick;
 		FPScount = 0;
 	}

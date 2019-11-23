@@ -17,7 +17,9 @@ Portal portals[2];
 vector<ivec2> p1_entries,
 			  p2_entries;
 
-bool eIsPressed = false;
+bool eIsPressed = false,
+	 oneIsPressed = false,
+	 multisample_mode = false;
 
 LARGE_INTEGER frequency;
 LARGE_INTEGER oldSimTick;

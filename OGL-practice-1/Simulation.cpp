@@ -77,7 +77,8 @@ void gameObjSimulation(float deltaTime)
 		player->move(d);
 		last = d;
 	}
-	else if (GetAsyncKeyState(0x45)) // e
+	
+	if (GetAsyncKeyState(0x45)) // e
 	{
 		if (!eIsPressed)
 		{
@@ -89,6 +90,25 @@ void gameObjSimulation(float deltaTime)
 	{
 		eIsPressed = false;
 	}
+	
+	if (GetAsyncKeyState('1')) // 1
+	{
+		if (!oneIsPressed)
+		{
+			oneIsPressed = true;
+			multisample_mode = !multisample_mode;
+		}
+	}
+	else if (!GetAsyncKeyState('1'))
+	{
+		oneIsPressed = false;
+	}
+
+	if (multisample_mode)
+		glEnable(GL_MULTISAMPLE);
+	else
+		glDisable(GL_MULTISAMPLE);
+
 
 	if (player->getAutoMove())
 	{
