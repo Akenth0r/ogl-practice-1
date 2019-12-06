@@ -147,5 +147,22 @@
 				"shininess": 64.0
 			}
 		}
+   },
+   
+   
+   "BombObject":
+   {
+		"Mesh": {"FileName": "Sphere.obj"},
+		"Material":
+		{
+			"PhongParameters":
+			{
+				"ambient": [0.0, 0.0, 0.0],
+				"diffuse": [0.2, 0.2, 0.2, 1.0],
+				"specular": [1.0, 1.0, 1.0],
+				"emission": [0.0, 0.0, 0.0],
+				"shininess": 64.0
+			}
+		}
    }
 }

@@ -4,7 +4,11 @@ void simulation()
 {
 	float deltaTime = getSimulationTime(); // time from last frame
 	controlsSimulation();
-	gameObjSimulation(deltaTime);
+	if (!gameover)
+	{
+		gameObjSimulation(deltaTime);
+		bombSimulation(deltaTime);
+	}
 	glutPostRedisplay();
 }
 
@@ -91,24 +95,6 @@ void gameObjSimulation(float deltaTime)
 		eIsPressed = false;
 	}
 	
-	if (GetAsyncKeyState('1')) // 1
-	{
-		if (!oneIsPressed)
-		{
-			oneIsPressed = true;
-			multisample_mode = !multisample_mode;
-		}
-	}
-	else if (!GetAsyncKeyState('1'))
-	{
-		oneIsPressed = false;
-	}
-
-	if (multisample_mode)
-		glEnable(GL_MULTISAMPLE);
-	else
-		glDisable(GL_MULTISAMPLE);
-
 
 	if (player->getAutoMove())
 	{
@@ -210,6 +196,25 @@ void controlsSimulation()
 		oldCursPos = newCursPos;
 		GetCursorPos(&newCursPos);
 	}
+
+	if (GetAsyncKeyState('1')) // 1
+	{
+		if (!oneIsPressed)
+		{
+			oneIsPressed = true;
+			multisample_mode = !multisample_mode;
+		}
+	}
+	else if (!GetAsyncKeyState('1'))
+	{
+		oneIsPressed = false;
+	}
+
+	if (multisample_mode)
+		glEnable(GL_MULTISAMPLE);
+	else
+		glDisable(GL_MULTISAMPLE);
+
 }
 
 
@@ -219,4 +224,47 @@ void mouseWheelFunc(int wheel, int direction, int x, int y)
 		camera.zoomInOut(-0.5);
 	if (direction == -1)
 		camera.zoomInOut(0.5);
+}
+
+void bombSimulation(float deltaTime)
+{
+	if (GetAsyncKeyState(VK_SPACE) && !player->isMoving() && !bomb.isTicking())
+	{
+		ivec2 pPos = player->getPosition();
+		bomb.start();
+		bomb_gobj->setPosition(pPos);
+		passabilityMap[pPos.y][pPos.x] = BOMB;
+	}
+
+	bool isExploded = bomb.count(deltaTime);
+	if (isExploded)
+	{
+		ivec2 bombPos = bomb_gobj->getPosition(),
+			  pPos = player->getPosition();
+		passabilityMap[bombPos.y][bombPos.x] = EMPTY;
+		for (int i = -1; i <= 1; i++)
+		{
+			for (int j = -1; j <= 1; j++)
+			{
+				int new_x = bombPos.x + i,
+					new_y = bombPos.y + j;
+
+				if (new_x < 0 || new_x >= 21 || new_y < 0 || new_y >= 21)
+					continue;
+
+				if (passabilityMap[new_y][new_x] == CHAMFER_BOX)
+				{
+					passabilityMap[new_y][new_x] = EMPTY;
+					gameObjects[new_y][new_x] = GOFactory.create(EMPTY_OBJECT, new_x, new_y);
+				}
+				
+				if (new_x == pPos.x && new_y == pPos.y)
+				{
+					passabilityMap[new_y][new_x] = EMPTY;
+					player = GOFactory.create(EMPTY_OBJECT, new_x, new_y);
+					gameover = true;
+				}
+			}
+		}
+	}
 }

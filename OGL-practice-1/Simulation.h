@@ -8,3 +8,4 @@ float getSimulationTime();
 // Camera rotation
 void controlsSimulation();
 void simulation();
+void bombSimulation(float deltaTime);

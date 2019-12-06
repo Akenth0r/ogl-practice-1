@@ -8,8 +8,12 @@
 #include "GameObjectFactory.h"
 #include <memory>
 #include "Portal.h"
+#include "Sprite.h"
+#include "Bomb.h"
+
 class GameObjectFactory;
 class Portal;
+class Sprite;
 
 enum MESH_TYPES
 {
@@ -19,7 +23,8 @@ enum MESH_TYPES
 	DARK_BOX,		// 3
 	PLAYER,			// 4
 	PORTAL1,		// 5
-	PORTAL2			// 6
+	PORTAL2,		// 6
+	BOMB
 };
 
 
@@ -32,7 +37,8 @@ extern const int p2_entries_count;
 
 extern bool eIsPressed, 
 			oneIsPressed,
-			multisample_mode;
+			multisample_mode,
+			gameover;
 
 // Variables
 extern Light lights[1];
@@ -44,7 +50,11 @@ extern shared_ptr<GameObject>  plane;
 extern Portal portals[2];
 extern shared_ptr<GameObject> portal1_entries[4];
 extern shared_ptr<GameObject> portal2_entries[2];
-
+extern shared_ptr<GameObject> bomb_gobj;
+extern Bomb bomb;
+extern Sprite authorSpr,
+		bombSpr,
+		bombTickSpr;
 extern char sFPS[30];
 extern int FPScount;
 

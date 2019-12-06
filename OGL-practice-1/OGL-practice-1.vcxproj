@@ -77,11 +77,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\VSL\glew-2.1.0\include\;$(ProjectDir)\..\VSL\rapidjson;$(ProjectDir)..\VSL\GLM;$(ProjectDir)..\VSL\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\VSL\DevIL Windows SDK\include;$(ProjectDir)\..\VSL\glew-2.1.0\include\;$(ProjectDir)\..\VSL\rapidjson;$(ProjectDir)..\VSL\GLM;$(ProjectDir)..\VSL\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\VSL\glew-2.1.0\lib\Release\Win32;$(ProjectDir)..\VSL\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\VSL\DevIL Windows SDK\lib\x86\Release;$(ProjectDir)\..\VSL\glew-2.1.0\lib\Release\Win32;$(ProjectDir)..\VSL\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;freeglut.lib;glew32.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -105,13 +105,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\VSL\glew-2.1.0\include\;$(ProjectDir)\..\VSL\rapidjson;$(ProjectDir)..\VSL\GLM;$(ProjectDir)..\VSL\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\VSL\DevIL Windows SDK\include;$(ProjectDir)\..\VSL\glew-2.1.0\include\;$(ProjectDir)\..\VSL\rapidjson;$(ProjectDir)..\VSL\GLM;$(ProjectDir)..\VSL\freeglut\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\VSL\glew-2.1.0\lib\Release\Win32;$(ProjectDir)..\VSL\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;freeglut.lib;glew32.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\VSL\DevIL Windows SDK\lib\x86\Release;$(ProjectDir)\..\VSL\glew-2.1.0\lib\Release\Win32;$(ProjectDir)..\VSL\freeglut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Display.cpp" />
@@ -145,8 +146,10 @@
     <ClCompile Include="PathFinder.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Display.h" />
@@ -159,6 +162,7 @@
     <ClInclude Include="PathFinder.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="Simulation.h" />
+    <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

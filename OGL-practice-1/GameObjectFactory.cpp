@@ -25,7 +25,8 @@ GameObjectFactory::GameObjectFactory()
 		{"PlayerObject", MAIN_HERO_OBJECT},
 		{"Portal_1_Object", PORTAL1_OBJECT},
 		{"Portal_2_Object", PORTAL2_OBJECT},
-		{"PlaneObject", PLANE_OBJECT}
+		{"PlaneObject", PLANE_OBJECT},
+		{"BombObject", BOMB_OBJECT}
 	};
 }
 
@@ -135,5 +136,5 @@ void GameObjectFactory::initObject(GameObjectType type, rapidjson::Value::ConstM
 	);
 
 	// shininess
-	//materials[type].setShininess(obj->value["Material"]["PhongParameteres"]["shininess"].GetDouble());
+	materials[type].setShininess(obj->value["Material"]["PhongParameters"]["shininess"].GetDouble());
 }

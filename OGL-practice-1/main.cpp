@@ -16,6 +16,10 @@
 #include "Simulation.h"
 #include "Display.h"
 #include "PathFinder.h"
+#include "IL/il.h"
+#include "IL/ilu.h"
+#include "IL/ilut.h"
+#include "Sprite.h"
 
 using namespace std;
 using namespace glm;
@@ -38,6 +42,12 @@ int main(int argc, char* argv[])
 	}
 	else
 		cout << "GLEW VERSION " << glewGetString(GLEW_VERSION) << endl;
+	// OpenIL
+	ilInit();
+	ilEnable(IL_ORIGIN_SET);
+	ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
+	iluInit();
+	ilutInit();
 
 	// Set callbacks
 	glutDisplayFunc(display);

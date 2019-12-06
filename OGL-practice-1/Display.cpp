@@ -19,6 +19,10 @@ void display()
 	drawTransparent();
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, 0);
 
+	glDisable(GL_LIGHTING);
+	glDisable(GL_DEPTH_TEST);
+	drawSprites();
+
 	glutSwapBuffers();
 
 	string title = string(sFPS) + string(" || Antialiasing: ") + (multisample_mode?string(" on"):string(" off"));
@@ -35,6 +39,8 @@ void drawOpaque()
 		plane->draw();
 	if (!player->isTransparent())
 		player->draw();
+	if (bomb.isTicking())
+		bomb_gobj->draw();
 }
 
 void drawTransparent()
@@ -92,8 +98,18 @@ void outFPS()
 void reshape(int w, int h)
 {
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-
+	Sprite::screenWidth = w;
+	Sprite::screenHeight = h;
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(25.0, (float)w / h, .2, 70.);
+}
+
+
+void drawSprites()
+{
+	// Sprites
+	authorSpr.drawFromRightUp(200, 50);
+	if (bomb.isTicking())
+		bomb.drawHUD();
 }

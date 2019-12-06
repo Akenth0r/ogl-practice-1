@@ -10,7 +10,8 @@ Light lights[LightCount];
 Camera camera;
 shared_ptr<GameObject>  gameObjects[21][21];
 shared_ptr<GameObject>  player;
-shared_ptr<GameObject> plane;
+shared_ptr<GameObject>  plane;
+shared_ptr<GameObject>  bomb_gobj;
 //shared_ptr<GameObject> portal1_entries[4];
 //shared_ptr<GameObject> portal2_entries[2];
 Portal portals[2];
@@ -19,7 +20,8 @@ vector<ivec2> p1_entries,
 
 bool eIsPressed = false,
 	 oneIsPressed = false,
-	 multisample_mode = false;
+	 multisample_mode = false,
+	 gameover = false;
 
 LARGE_INTEGER frequency;
 LARGE_INTEGER oldSimTick;
@@ -28,10 +30,12 @@ LARGE_INTEGER oldDrawTick;
 LARGE_INTEGER newDrawTick;
 POINT oldCursPos;
 POINT newCursPos;
-
+Sprite authorSpr,
+	   bombSpr,
+	   bombTickSpr;
 char sFPS[30];
+Bomb bomb;
 int FPScount;
-
 // Passability map
 int passabilityMap[21][21] = {
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
@@ -57,10 +61,12 @@ int passabilityMap[21][21] = {
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3
 };
 
+int Sprite::screenHeight;
+int Sprite::screenWidth;
+GameObjectFactory GOFactory;
 
 void initData()
 {
-	static GameObjectFactory GOFactory;
 	GOFactory.init(".\\scene.json");
 	// Initialize camera
 	camera.setPosition(vec3(1.0, 10.0, 5.0));
@@ -99,6 +105,17 @@ void initData()
 	// Initialize portals
 	portals[0] = Portal(p1_entries);
 	portals[1] = Portal(p2_entries);
+
+	// Load sprites
+	authorSpr.load("SPRITES\\author.png");
+	bombSpr.load("SPRITES\\Bomb.ico");
+	bombTickSpr.load("SPRITES\\BombTick.tga");
+
+	// Initialize bomb object
+	bomb_gobj = GOFactory.create(BOMB_OBJECT, 0, 0);
+
+	// Set bomb sprites
+	bomb.setSprites(&bombSpr, &bombTickSpr);
 
 	// Enter in the main loop
 	QueryPerformanceCounter(&newSimTick);

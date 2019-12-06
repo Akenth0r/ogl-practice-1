@@ -5,3 +5,4 @@ void outFPS();
 void display();
 void drawOpaque();
 void drawTransparent();
+void drawSprites();
