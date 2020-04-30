@@ -26,8 +26,10 @@ GameObjectFactory::GameObjectFactory()
 		{"Portal_1_Object", PORTAL1_OBJECT},
 		{"Portal_2_Object", PORTAL2_OBJECT},
 		{"PlaneObject", PLANE_OBJECT},
-		{"BombObject", BOMB_OBJECT}
+		{"BombObject", BOMB_OBJECT},
+		{"MonsterObject", MONSTER_OBJECT}
 	};
+
 }
 
 void GameObjectFactory::init(const char* filenameJSON)
@@ -73,14 +75,19 @@ void GameObjectFactory::init(const char* filenameJSON)
 
 shared_ptr<GameObject> GameObjectFactory::create(GameObjectType type, int x, int y)
 {
-	shared_ptr<GameObject> tmp(new GameObject);
+	shared_ptr<GameObject> tmp( (type!=MONSTER_OBJECT?new GameObject:new Monster) );
 	GraphicObject tmpGObj;
-	tmpGObj.setMaterial(&(this->materials[type]));
-	tmpGObj.setMesh(&(this->meshes[type]));
+	if (type != EMPTY_OBJECT)
+	{
+		tmpGObj.setMaterial(this->materials[type]);
+		tmpGObj.setMesh(&(this->meshes[type]));
+	}
 	if (type == PLANE_OBJECT)
 		tmp->setHeight(-0.5f);
 	tmp->setPosition(x, y);
 	tmp->setGraphicObject(tmpGObj);
+	//printf("Type: %i, material: %0x\n", type, materials[type]);
+	//system("pause");
 	return tmp;
 }
 
@@ -92,49 +99,58 @@ void GameObjectFactory::initObject(GameObjectType type, rapidjson::Value::ConstM
 
 	// Now is turn of the material
 	// diffuse
-	materials[type].setDiffuse( 
-		vec4
+	//materials[type].setDiffuse( 
+	vec4 diffuse = vec4
 		(
 			(obj->value["Material"])["PhongParameters"]["diffuse"][0].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["diffuse"][1].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["diffuse"][2].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["diffuse"][3].GetDouble()
-		)
-	);
+		);
 	
 	// ambient
-	materials[type].setAmbient(
-		vec4
+	//materials[type].setAmbient(
+	vec4 ambient = vec4
 		(
 			(obj->value["Material"])["PhongParameters"]["ambient"][0].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["ambient"][1].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["ambient"][2].GetDouble(),
 			1.0
-		)
-	);
+		);
 
 	// specular
-	materials[type].setSpecular(
-		vec4
+	//materials[type].setSpecular(
+	vec4 specular = vec4
 		(
 			(obj->value["Material"])["PhongParameters"]["specular"][0].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["specular"][1].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["specular"][2].GetDouble(),
 			1.0
-		)
-	);
+		);
 
 	// emission
-	materials[type].setEmission(
-		vec4
+	//materials[type].setEmission(
+	vec4 emission = vec4
 		(
 			(obj->value["Material"])["PhongParameters"]["emission"][0].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["emission"][1].GetDouble(),
 			(obj->value["Material"])["PhongParameters"]["emission"][2].GetDouble(),
 			1.0
-		)
-	);
+		);
 
 	// shininess
-	materials[type].setShininess(obj->value["Material"]["PhongParameters"]["shininess"].GetDouble());
+	//materials[type].setShininess(obj->value["Material"]["PhongParameters"]["shininess"].GetDouble());
+	float shininess = obj->value["Material"]["PhongParameters"]["shininess"].GetDouble();
+
+	string mType = obj->value["Material"]["Type"].GetString();
+
+	if (mType == "PhongMaterial")
+		materials[type] = new PhongMaterial(ambient, diffuse, specular, emission, shininess);
+	else if (mType == "PhongMaterialWithTexture")
+	{
+		string filepath = string("TEXTURES\\") +  obj->value["Material"]["Texture"]["FileName"].GetString();
+		materials[type] = new PhongMaterialWithTexture(ambient, diffuse, specular, emission, shininess,
+			new Texture(filepath.c_str()));
+	}
+	//printf("%0x\n\n\n",materials[type]);
 }

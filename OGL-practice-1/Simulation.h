@@ -9,3 +9,4 @@ float getSimulationTime();
 void controlsSimulation();
 void simulation();
 void bombSimulation(float deltaTime);
+void monsterSimulation();

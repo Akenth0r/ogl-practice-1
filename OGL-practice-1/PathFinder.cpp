@@ -40,8 +40,8 @@ bool PathFinder::propagateWave(ivec2 start, ivec2 end)
 	q.push(start);
 	// When start or end isn't empty cell
 	// We can't find the path
-	if ((passabilityMap[start.y][start.x] && passabilityMap[start.y][start.x] != PLAYER) || (passabilityMap[end.y][end.x] && passabilityMap[start.y][start.x] != PLAYER))
-		return false;
+	//if (passabilityMap[start.y][start.x] || passabilityMap[end.y][end.x] )
+	//	return false;
 
 	if (end == start)
 		return false;
@@ -70,7 +70,7 @@ bool PathFinder::propagateWave(ivec2 start, ivec2 end)
 			int x = cur.x + move.x,
 				y = cur.y + move.y;
 			// When cell is not visited and it is empty cell
-			if (y >= 0 && y < 21 && x >= 0 && x < 21 && passabilityMap[y][x] == EMPTY && !isVisited(ivec2(x,y)))
+			if (y >= 0 && y < 21 && x >= 0 && x < 21 && (passabilityMap[y][x] == EMPTY || passabilityMap[y][x] == PLAYER) && !isVisited(ivec2(x,y)))
 			{
 				// Add to queue and set the cost
 				q.push(ivec2(x, y));

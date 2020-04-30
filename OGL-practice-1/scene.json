@@ -3,10 +3,11 @@
    {
       "Mesh": 
 	  {
-         "FileName": "HighPolyChamferBox.obj"
+         "FileName": "HighPolyBox.obj"
       },
       "Material": 
 	  {
+        "Type" : "PhongMaterialWithTexture",
          "Texture": 
 		 {
             "FileName": "light_object.png"
@@ -27,10 +28,11 @@
    {
       "Mesh": 
 	  {
-         "FileName": "HighPolyChamferBox.obj"
+         "FileName": "HighPolyBox.obj"
       },
       "Material": 
 	  {
+        "Type" : "PhongMaterialWithTexture",
          "Texture": 
 		 {
             "FileName": "heavy_object.png"
@@ -55,6 +57,7 @@
       },
       "Material": 
 	  {
+        "Type" : "PhongMaterialWithTexture",
          "Texture": 
 		 {
             "FileName": "border_object.png"
@@ -81,6 +84,7 @@
 	  
       "Material": 
 	  {
+        "Type" : "PhongMaterial",
          "PhongParameters": 
 		 {
             "diffuse": [0.6, 0.0, 0.6, 1.0],
@@ -101,6 +105,7 @@
       },
       "Material": 
 	  {
+        "Type" : "PhongMaterial",
          "PhongParameters": 
 		 {
             "diffuse": [0.3, 0.3, 0.3, 0.35],
@@ -121,6 +126,7 @@
       },
       "Material": 
 	  {
+        "Type" : "PhongMaterial",
          "PhongParameters": 
 		 {
             "diffuse": [0.3, 0.3, 0.3, 0.35],
@@ -138,10 +144,15 @@
 		"Mesh": {"FileName": "simple_plane.obj"},
 		"Material":
 		{
+            "Type" : "PhongMaterialWithTexture",
+            "Texture":
+            {
+                "FileName": "plane.jpg"
+            },
 			"PhongParameters":
 			{
-				"ambient": [0.25, 0.5, 0.25],
-				"diffuse": [0.25, 0.5, 0.25, 1.0],
+				"ambient": [0.25, 0.25, 0.25],
+				"diffuse": [0.25, 0.25, 0.25, 1.0],
 				"specular": [0.0, 0.0, 0.0, 1.0],
 				"emission": [0.0, 0.0, 0.0, 1.0],
 				"shininess": 64.0
@@ -155,6 +166,7 @@
 		"Mesh": {"FileName": "Sphere.obj"},
 		"Material":
 		{
+            "Type" : "PhongMaterial",
 			"PhongParameters":
 			{
 				"ambient": [0.0, 0.0, 0.0],
@@ -164,5 +176,22 @@
 				"shininess": 64.0
 			}
 		}
-   }
+   },
+   
+   "MonsterObject":
+   {
+		"Mesh": {"FileName":"Sphere.obj"},
+	    	"Material":
+            {
+                "Type":"PhongMaterial",
+		        "PhongParameters": 	
+                {
+	        		"diffuse":[0.6, 0.1, 0.1, 1.0],
+	                "ambient":[0.0, 0.0, 0.0],
+		            "specular":[0.0, 0.0, 0.0],
+	                "emission":[0.6, 0.1, 0.1],
+                    "shininess":64.0
+                }
+            }
+	}
 }

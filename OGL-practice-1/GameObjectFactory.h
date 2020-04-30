@@ -5,6 +5,9 @@
 #include "rapidjson/rapidjson.h"
 #include <string>
 #include <map>
+#include "PhongMaterial.h"
+#include "PhongMaterialWithTexture.h"
+#include "Monster.h"
 enum GameObjectType
 {
 	LIGHT_OBJECT,
@@ -33,8 +36,8 @@ public:
 	~GameObjectFactory()=default;
 	
 private:
-	Mesh	 meshes[MAX_OBJECT_COUNT];
-	Material materials[MAX_OBJECT_COUNT];
+	Mesh	  meshes[MAX_OBJECT_COUNT];
+	Material* materials[MAX_OBJECT_COUNT];
 	rapidjson::Document docJSON;
 	map<string, GameObjectType> gObjType;
 	void initObject(GameObjectType type, rapidjson::Value::ConstMemberIterator obj);

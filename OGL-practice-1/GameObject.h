@@ -50,13 +50,13 @@ public:
 	bool isMoving();
 
 	// simulation func
-	void simulate(float sec);
+	virtual void simulate(float sec);
 
 	// Check if game object is transparent
 	bool isTransparent();
 
 	// Draw game object
-	void draw();
+	virtual void draw();
 
 	bool getAutoMove();
 
@@ -64,7 +64,7 @@ public:
 
 	~GameObject()=default;
 
-private:
+protected:
 	ivec2 position;
 	float h;
 	GraphicObject graphicObject;

@@ -31,7 +31,6 @@ GLfloat GraphicObject::getAngle()
 	return angle;
 }
 
-
 void GraphicObject::setMaterial(Material* material)
 {
 	this->material = material;
@@ -48,10 +47,13 @@ void GraphicObject::draw()
 {
 	glPushMatrix();
 	if (material)
+	{
 		material->apply();
+	}
 	glMultMatrixf(value_ptr(model));
 	if (mesh)
 		mesh->draw();
+	Texture::disableAll();
 	glPopMatrix();
 }
 

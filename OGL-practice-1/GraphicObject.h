@@ -5,6 +5,7 @@
 #include <GLM/gtx/transform.hpp>
 #include <GLM/gtc/type_ptr.hpp>
 #include "Material.h"
+#include "Texture.h"
 
 using namespace glm;
 

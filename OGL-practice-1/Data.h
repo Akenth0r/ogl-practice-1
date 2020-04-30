@@ -10,10 +10,13 @@
 #include "Portal.h"
 #include "Sprite.h"
 #include "Bomb.h"
+#include "Monster.h"
+
 
 class GameObjectFactory;
 class Portal;
 class Sprite;
+class Monster;
 
 enum MESH_TYPES
 {
@@ -24,7 +27,8 @@ enum MESH_TYPES
 	PLAYER,			// 4
 	PORTAL1,		// 5
 	PORTAL2,		// 6
-	BOMB
+	BOMB,			// 7
+	MONSTER			// 8
 };
 
 
@@ -34,11 +38,12 @@ extern const int MaterialCount;
 extern const int MeshCount;
 extern const int p1_entries_count;
 extern const int p2_entries_count;
-
-extern bool eIsPressed, 
-			oneIsPressed,
-			multisample_mode,
-			gameover;
+extern vector<Monster*> monsters;
+extern bool eIsPressed,
+		    oneIsPressed,
+		    multisample_mode,
+		    gameover,
+			twoIsPressed;
 
 // Variables
 extern Light lights[1];

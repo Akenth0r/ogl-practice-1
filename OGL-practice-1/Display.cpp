@@ -24,8 +24,8 @@ void display()
 	drawSprites();
 
 	glutSwapBuffers();
-
-	string title = string(sFPS) + string(" || Antialiasing: ") + (multisample_mode?string(" on"):string(" off"));
+	string texture_modes[] = { "NEAREST", "BILINEAR", "BILINEAR_MIPMAP", "THREELINEAR", "ANISO2", "ANISO4", "ANISO8", "ANISO16", "ANISO32" };
+	string title = string(sFPS) + string(" || Antialiasing: ") + (multisample_mode?string(" on"):string(" off")) + string(" || TexFilterMode: ") + texture_modes[Texture::texFilterMode];
 	glutSetWindowTitle(title.c_str());
 }
 
@@ -35,6 +35,7 @@ void drawOpaque()
 		for (int j = 0; j < 21; j++)
 			if (!gameObjects[i][j]->isTransparent())
 				gameObjects[i][j]->draw();
+	
 	if (!plane->isTransparent())
 		plane->draw();
 	if (!player->isTransparent())

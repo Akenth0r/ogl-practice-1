@@ -144,7 +144,7 @@ void gameObjSimulation(float deltaTime)
 		}
 
 	}
-	else if (passabilityMap[pNewPos.y][pNewPos.x] == GREY_BOX || passabilityMap[pNewPos.y][pNewPos.x] == DARK_BOX)
+	else if (passabilityMap[pNewPos.y][pNewPos.x] == GREY_BOX || passabilityMap[pNewPos.y][pNewPos.x] == DARK_BOX || passabilityMap[pNewPos.y][pNewPos.x] == MONSTER)
 	{
 		player->setPosition(pOldPos);
 		player->stop();
@@ -159,6 +159,7 @@ void gameObjSimulation(float deltaTime)
 	portals[1].simulate();
 	// move player
 	player->simulate(deltaTime);
+	monsterSimulation();
 
 	for (int i = 0; i < 21; i++)
 		for (int j = 0; j < 21; j++)
@@ -215,6 +216,21 @@ void controlsSimulation()
 	else
 		glDisable(GL_MULTISAMPLE);
 
+	// Filtering mode
+	if (GetAsyncKeyState('2'))
+	{
+		if (!twoIsPressed)
+		{
+			twoIsPressed = true;
+			Texture::texFilterMode = (Texture::texFilterMode + 1) % TexFilters::TEXFILTERS_COUNT;
+		}
+	}
+	else
+	{
+		twoIsPressed = false;
+	}
+
+
 }
 
 
@@ -252,11 +268,12 @@ void bombSimulation(float deltaTime)
 				if (new_x < 0 || new_x >= 21 || new_y < 0 || new_y >= 21)
 					continue;
 
-				if (passabilityMap[new_y][new_x] == CHAMFER_BOX)
+				if (passabilityMap[new_y][new_x] == CHAMFER_BOX || passabilityMap[new_y][new_x] == MONSTER)
 				{
 					passabilityMap[new_y][new_x] = EMPTY;
 					gameObjects[new_y][new_x] = GOFactory.create(EMPTY_OBJECT, new_x, new_y);
 				}
+
 				
 				if (new_x == pPos.x && new_y == pPos.y)
 				{
@@ -266,5 +283,14 @@ void bombSimulation(float deltaTime)
 				}
 			}
 		}
+	}
+}
+
+void monsterSimulation()
+{
+	for (auto monster : monsters)
+	{
+		if (monster)
+			(*monster).pathSimulation();
 	}
 }

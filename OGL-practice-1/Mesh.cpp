@@ -116,14 +116,18 @@ void Mesh::draw()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+	glClientActiveTexture(GL_TEXTURE0);
 
 	// Enable vertex attribs
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	// Point to data
 	glVertexPointer(3, GL_FLOAT, sizeof(Vertex), (void*)(offsetof(Vertex, coord)));		    // Coords
 	glNormalPointer(GL_FLOAT, sizeof(Vertex), (void*)(offsetof(Vertex, normal)));		    // Normal
+
+	glTexCoordPointer(2, GL_FLOAT, sizeof(Vertex), (void*)(offsetof(Vertex, texCoord)));
 
 	// Draw
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
@@ -131,6 +135,7 @@ void Mesh::draw()
 	// Disable vertex attribs
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

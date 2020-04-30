@@ -1,0 +1,36 @@
+﻿  Bomb.cpp
+  Camera.cpp
+  Data.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Sprite.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Display.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  GameObject.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  GameObjectFactory.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Light.cpp
+  main.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  GraphicObject.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Material.cpp
+  Mesh.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Monster.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Mesh.cpp(133,65): warning C4267: аргумент: преобразование из "size_t" в "GLsizei"; возможна потеря данных
+  PathFinder.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  PhongMaterial.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  PhongMaterialWithTexture.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\PhongMaterial.cpp(106,40): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Portal.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Simulation.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Sprite.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Texture.cpp
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Sprite.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
+  Создание кода...
+C:\Users\Waldemar\Desktop\aog\OGL-practice-1\Texture.h(3,10): fatal error C1083: Не удается открыть файл включение: IL/il.h: No such file or directory,
