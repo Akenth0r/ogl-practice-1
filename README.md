@@ -15,6 +15,9 @@ Simple project for ogl learning
   <li> Moving depending on camera orientation </li>
   <li> Passability map </li>
   <li> Simple collision (player can move yellow boxes) </li>
+  <li> Textures </li>
+  <li> Sprites </li>
+  
 
 </ul>
 
@@ -23,7 +26,10 @@ Simple project for ogl learning
   <li> <kbd>LMB + drag</kbd> - camera rotation </li>
   <li> <kbd> Mouse Scroll </kbd> - zoom in\out </li>
   <li> <kbd> WASD </kbd> - player moving </li>
-  <li> <kbd> E </kbd> - automove to upper right corner of the map (if it's impossible to move there, finds the nearest cell and moves to it)
+  <li> <kbd> E </kbd> - automove to upper right corner of the map (if it's impossible to move there, finds the nearest cell and moves to it)</li>
+  <li> <kbd> SPACE </kbd> - place a bomb </li>
+  <li> <kbd> 1 </kbd> - enable\disable anisotropic filtering </li>
+  <li> <kbd> 2 </kbd> - change texture filtering mode </li>
 </ul>
 
 <h2> PathFinder example </h2>
