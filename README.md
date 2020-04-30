@@ -36,6 +36,5 @@ Simple project for ogl learning
 
 <h2> PathFinder example </h2>
 <img src = "https://github.com/Akenth0r/ogl-practice-1/blob/master/pathfinder.gif?raw=true"> </img>
-<hr>
 <h2> Final version </h2>
 <img src = "https://github.com/Akenth0r/ogl-practice-1/blob/master/gameplay.gif"> </img>
