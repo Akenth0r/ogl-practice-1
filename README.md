@@ -17,6 +17,8 @@ Simple project for ogl learning
   <li> Simple collision (player can move yellow boxes) </li>
   <li> Textures </li>
   <li> Sprites </li>
+  <li> Transparent object drawing </li>
+  <li> Portals </li>
   
 
 </ul>
